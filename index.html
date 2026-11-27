@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Ballotle – Wann hörst du auf?</title>
+  <meta name="description" content="Ballotle: das tägliche Push-your-Luck-Spiel mit der Lotterie-Urne. Gold verdoppelt, Schwarz nimmt alles. Weiter oder einkassieren?">
+  <meta name="theme-color" content="#5a0712">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='44' fill='%23f5c518' stroke='%238a5a00' stroke-width='6'/><circle cx='36' cy='34' r='12' fill='%23fff6b0'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="app">
+    <header class="top">
+      <div class="brand">
+        <h1>Ballotle</h1>
+        <div class="sub"><span id="dayNo">#1</span> · <span id="dateLbl"></span> <span id="streak" class="streak"></span></div>
+      </div>
+      <div class="acct" id="acct" title="Chip-Konto über alle Tage">
+        <div class="chips">🪙 <span id="chips">0</span></div>
+        <div id="title" class="title">Neuling</div>
+      </div>
+      <nav class="icons">
+        <button id="btnSound" class="ic" aria-label="Ton an/aus">🔊</button>
+        <button id="btnShop" class="ic" aria-label="Sammlung und Shop">🏆</button>
+        <button id="btnHelp" class="ic" aria-label="Spielregeln">?</button>
+      </nav>
+    </header>
+
+    <div class="modbar" id="modBar">
+      <span class="mod-ic" id="modIc">🎩</span>
+      <div><b id="modName">Heute</b><span id="modDesc"></span></div>
+    </div>
+
+    <div class="rounds" id="rounds"></div>
+
+    <main class="stage">
+      <div class="urn-wrap">
+        <canvas id="urn" width="360" height="410" aria-label="Lotterie-Urne"></canvas>
+        <div id="reveal" class="reveal"></div>
+        <div id="announce" class="announce" aria-live="polite"></div>
+      </div>
+      <div class="tray" id="tray" aria-label="Gezogene Kugeln"></div>
+      <div class="counts" id="counts" aria-label="Kugeln in der Urne"></div>
+    </main>
+
+    <section class="hud">
+      <div class="pot" id="potBox">
+        <div class="pot-label">Topf</div>
+        <div class="pot-val"><span id="pot">10</span></div>
+        <div class="mult" id="mult">x1</div>
+        <div class="pot-extra" id="potExtra"></div>
+      </div>
+      <div class="helpbox" id="helpBox">
+        <div class="risk">
+          <div class="risk-lbl" title="Wahrscheinlichkeit, dass die nächste Ziehung deinen Topf kostet">Bust-Risiko <b id="riskVal">–</b></div>
+          <div class="risk-bar"><i id="riskFill"></i></div>
+        </div>
+        <div class="ev" id="evLine"></div>
+        <div class="pro-hint">🧠 Profi-Modus: keine Hilfe, +25 %</div>
+      </div>
+    </section>
+
+    <div class="actions">
+      <button id="btnDraw" class="btn draw">ZIEHEN<small></small></button>
+      <button id="btnCash" class="btn cash">EINKASSIEREN<small>🪙 <span id="cashAmt">10</span></small></button>
+    </div>
+    <label class="pro" id="proWrap"><input type="checkbox" id="proToggle"><span class="sw"></span> Profi-Modus <small>ohne Risikoanzeige · +25 % Chips</small></label>
+    <footer class="foot">Kein Echtgeld · keine Anmeldung · <a href="https://playle.io" target="_blank" rel="noopener">playle.io</a> · <a href="https://dicele.io" target="_blank" rel="noopener">dicele.io</a></footer>
+  </div>
+
+  <canvas id="fx" aria-hidden="true"></canvas>
+  <div id="flash" aria-hidden="true"></div>
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true"><div class="card" id="modalCard"></div></div>
+  <div id="toasts"></div>
+
+  <script src="js/logic.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/fx.js"></script>
+  <script src="js/urn.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
